@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://bit04m7u6da4j"]
+
+[ext_resource type="PackedScene" uid="uid://q88u8x4ixq6q" path="res://prefabs/plataform.tscn" id="1_68lhs"]
+[ext_resource type="PackedScene" uid="uid://cnf2emc0tnngt" path="res://prefabs/player.tscn" id="2_ssnt5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n41nf"]
+size = Vector2(20, 1280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fee2n"]
+size = Vector2(720, 20)
+
+[node name="world" type="Node2D"]
+
+[node name="walls" type="Node" parent="."]
+
+[node name="left" type="Area2D" parent="walls"]
+position = Vector2(0, 4)
+metadata/_edit_group_ = true
+
+[node name="leftCollider" type="CollisionShape2D" parent="walls/left"]
+position = Vector2(0, 640)
+shape = SubResource("RectangleShape2D_n41nf")
+
+[node name="right" type="Area2D" parent="walls"]
+metadata/_edit_group_ = true
+
+[node name="rightCollider" type="CollisionShape2D" parent="walls/right"]
+position = Vector2(720, 640)
+shape = SubResource("RectangleShape2D_n41nf")
+
+[node name="bottom" type="Area2D" parent="walls"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/bottom"]
+position = Vector2(360, 1280)
+shape = SubResource("RectangleShape2D_fee2n")
+
+[node name="deathArea" type="Area2D" parent="walls"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/deathArea"]
+position = Vector2(360, 1920)
+shape = SubResource("RectangleShape2D_fee2n")
+
+[node name="plataform" parent="." instance=ExtResource("1_68lhs")]
+position = Vector2(255, 1094)
+
+[node name="player" parent="." instance=ExtResource("2_ssnt5")]
+position = Vector2(271, 1240)
