@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bit04m7u6da4j"]
+[gd_scene load_steps=7 format=3 uid="uid://bit04m7u6da4j"]
 
 [ext_resource type="PackedScene" uid="uid://q88u8x4ixq6q" path="res://prefabs/platform.tscn" id="1_68lhs"]
 [ext_resource type="PackedScene" uid="uid://cnf2emc0tnngt" path="res://prefabs/player.tscn" id="2_ssnt5"]
+[ext_resource type="Script" path="res://scripts/Loading.cs" id="3_tnlhb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n41nf"]
 size = Vector2(20, 1261.5)
@@ -59,8 +60,26 @@ shape = SubResource("RectangleShape2D_fee2n")
 
 [node name="plataform" parent="." instance=ExtResource("1_68lhs")]
 position = Vector2(-3, 1205)
+AnimationDirection = 2
+
+[node name="plataform3" parent="." node_paths=PackedStringArray("animationPlayer") instance=ExtResource("1_68lhs")]
+position = Vector2(8, 1037)
+AnimationSpeedPercent = 150.0
+AnimationDirection = 2
+animationPlayer = NodePath("../plataform/AnimatableBody2D/AnimationPlayer")
+
+[node name="Platform" parent="." instance=ExtResource("1_68lhs")]
+position = Vector2(11, 851)
 AnimationSpeedPercent = 50.0
 AnimationDirection = 2
 
 [node name="player" parent="." instance=ExtResource("2_ssnt5")]
 position = Vector2(271, 1240)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -11.0
+offset_right = 729.0
+offset_bottom = 1289.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("3_tnlhb")

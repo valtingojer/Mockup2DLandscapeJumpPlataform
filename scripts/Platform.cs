@@ -11,13 +11,13 @@ public partial class Platform : Node2D
 		Random
 	}
 
-	// Propriedade para definir a velocidade da animação em porcentagem
 	[Export] public float AnimationSpeedPercent { get; set; } = 100f;
 
-	// Propriedade para escolher a direção da animação usando o enum
 	[Export] public AnimationDirectionEnum AnimationDirection { get; set; } = AnimationDirectionEnum.Left;
 	
 	[Export] public AnimationPlayer animationPlayer { get; set; }
+	
+	[Export(PropertyHint.Range, "-1,100")] public int StartAt { get; set; } = 0;
 
 	private string animMove;
 	private string animMoveBack;
@@ -50,7 +50,6 @@ public partial class Platform : Node2D
 
 	private void SetAnimationSpeed(float speedPercent)
 	{
-		// Converte a porcentagem para o multiplicador de velocidade
 		float speedScale = speedPercent / 100f;
 		animationPlayer.SpeedScale = speedScale;
 	}
@@ -72,8 +71,21 @@ public partial class Platform : Node2D
 			default:
 				break;
 		}
+		
+		float startPosition = 0f;
 
-		// Toca a animação selecionada
+		if (StartAt == -1)
+		{
+			Random random = new Random();
+			startPosition = (float)random.NextDouble(); // Random 0 to 1
+		}
+		else
+		{
+			// Converter StartAt para uma posição de 0.0 to 1.0
+			startPosition = Math.Clamp(StartAt / 100f, 0f, 1f);
+		}
+
 		animationPlayer.Play(animationToPlay);
+		animationPlayer.Seek(animationPlayer.CurrentAnimationLength * startPosition);
 	}
 }
