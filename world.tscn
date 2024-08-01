@@ -36,6 +36,13 @@ metadata/_edit_group_ = true
 position = Vector2(0, 632.5)
 shape = SubResource("RectangleShape2D_n41nf")
 
+[node name="ColorRect" type="ColorRect" parent="walls/left"]
+offset_left = -10.0
+offset_top = 2.0
+offset_right = 10.0
+offset_bottom = 1264.0
+color = Color(0.675146, 0.875033, 0.812898, 1)
+
 [node name="right" type="Area2D" parent="walls"]
 script = SubResource("CSharpScript_y36tq")
 metadata/_edit_group_ = true
@@ -44,12 +51,25 @@ metadata/_edit_group_ = true
 position = Vector2(720, 638.25)
 shape = SubResource("RectangleShape2D_n41nf")
 
+[node name="ColorRect" type="ColorRect" parent="walls/right"]
+offset_left = 710.0
+offset_top = 7.0
+offset_right = 730.0
+offset_bottom = 1269.0
+color = Color(0.67451, 0.87451, 0.811765, 1)
+
 [node name="bottom" type="Area2D" parent="walls"]
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls/bottom"]
 position = Vector2(360, 1280)
 shape = SubResource("RectangleShape2D_fee2n")
+
+[node name="ColorRect" type="ColorRect" parent="walls/bottom"]
+offset_top = 1270.0
+offset_right = 720.0
+offset_bottom = 1290.0
+color = Color(0.67451, 0.87451, 0.811765, 1)
 
 [node name="deathArea" type="Area2D" parent="walls"]
 metadata/_edit_group_ = true
@@ -74,7 +94,7 @@ AnimationSpeedPercent = 50.0
 AnimationDirection = 2
 
 [node name="player" parent="." instance=ExtResource("2_ssnt5")]
-position = Vector2(271, 1240)
+position = Vector2(347, 605)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
