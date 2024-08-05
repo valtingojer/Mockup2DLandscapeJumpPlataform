@@ -56,7 +56,8 @@ public partial class Platform : Node2D
 
 	private void PlaySelectedAnimation()
 	{
-		string animationToPlay = animMove;
+		// string animationToPlay = animMove;
+		string animationToPlay = "move";
 
 		switch (AnimationDirection)
 		{

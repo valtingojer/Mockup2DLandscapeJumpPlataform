@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/Loading.cs" id="3_tnlhb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n41nf"]
-size = Vector2(20, 1261.5)
+size = Vector2(10, 360)
 
 [sub_resource type="CSharpScript" id="CSharpScript_y36tq"]
 script/source = "using Godot;
@@ -19,28 +19,27 @@ public partial class Walls : Area2D
 			platform.FlipDirection();
 		}
 	}
-}"
+}
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fee2n"]
-size = Vector2(720, 20)
+size = Vector2(180, 10)
 
 [node name="world" type="Node2D"]
 
 [node name="walls" type="Node" parent="."]
 
 [node name="left" type="Area2D" parent="walls"]
-position = Vector2(0, 4)
 metadata/_edit_group_ = true
 
 [node name="leftCollider" type="CollisionShape2D" parent="walls/left"]
-position = Vector2(0, 632.5)
+position = Vector2(0, 180)
 shape = SubResource("RectangleShape2D_n41nf")
 
 [node name="ColorRect" type="ColorRect" parent="walls/left"]
-offset_left = -10.0
-offset_top = 2.0
-offset_right = 10.0
-offset_bottom = 1264.0
+offset_left = -5.0
+offset_right = 5.0
+offset_bottom = 360.0
 color = Color(0.675146, 0.875033, 0.812898, 1)
 
 [node name="right" type="Area2D" parent="walls"]
@@ -48,53 +47,52 @@ script = SubResource("CSharpScript_y36tq")
 metadata/_edit_group_ = true
 
 [node name="rightCollider" type="CollisionShape2D" parent="walls/right"]
-position = Vector2(720, 638.25)
+position = Vector2(180, 180)
 shape = SubResource("RectangleShape2D_n41nf")
 
 [node name="ColorRect" type="ColorRect" parent="walls/right"]
-offset_left = 710.0
-offset_top = 7.0
-offset_right = 730.0
-offset_bottom = 1269.0
+offset_left = 175.0
+offset_right = 185.0
+offset_bottom = 360.0
 color = Color(0.67451, 0.87451, 0.811765, 1)
 
 [node name="bottom" type="Area2D" parent="walls"]
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls/bottom"]
-position = Vector2(360, 1280)
+position = Vector2(90, 360)
 shape = SubResource("RectangleShape2D_fee2n")
 
 [node name="ColorRect" type="ColorRect" parent="walls/bottom"]
-offset_top = 1270.0
-offset_right = 720.0
-offset_bottom = 1290.0
+offset_top = 355.0
+offset_right = 180.0
+offset_bottom = 365.0
 color = Color(0.67451, 0.87451, 0.811765, 1)
 
 [node name="deathArea" type="Area2D" parent="walls"]
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls/deathArea"]
-position = Vector2(360, 1920)
+position = Vector2(90, 600)
 shape = SubResource("RectangleShape2D_fee2n")
 
 [node name="plataform" parent="." instance=ExtResource("1_68lhs")]
-position = Vector2(-3, 1205)
+position = Vector2(0, 315)
 AnimationDirection = 2
 
 [node name="plataform3" parent="." node_paths=PackedStringArray("animationPlayer") instance=ExtResource("1_68lhs")]
-position = Vector2(8, 1037)
+position = Vector2(0, 256)
 AnimationSpeedPercent = 150.0
 AnimationDirection = 2
 animationPlayer = NodePath("../plataform/AnimatableBody2D/AnimationPlayer")
 
 [node name="Platform" parent="." instance=ExtResource("1_68lhs")]
-position = Vector2(11, 851)
+position = Vector2(0, 206)
 AnimationSpeedPercent = 50.0
 AnimationDirection = 2
 
 [node name="player" parent="." instance=ExtResource("2_ssnt5")]
-position = Vector2(347, 605)
+position = Vector2(48, 47)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -103,3 +101,4 @@ offset_right = 729.0
 offset_bottom = 1289.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("3_tnlhb")
+IsLoading = false
