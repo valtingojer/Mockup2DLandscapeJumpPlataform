@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://bit04m7u6da4j"]
+
+[ext_resource type="PackedScene" uid="uid://cnf2emc0tnngt" path="res://prefabs/player.tscn" id="2_ssnt5"]
+[ext_resource type="Script" path="res://scripts/Loading.cs" id="3_tnlhb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n41nf"]
+size = Vector2(10, 360)
+
+[sub_resource type="CSharpScript" id="CSharpScript_y36tq"]
+script/source = "using Godot;
+
+public partial class Walls : Area2D
+{
+	public void OnAreaEntered(Area2D area)
+	{
+		if (area is MovePlatform platform)
+		{
+			platform.FlipDirection();
+		}
+	}
+}
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fee2n"]
+size = Vector2(180, 10)
+
+[node name="world" type="Node2D"]
+
+[node name="walls" type="Node" parent="."]
+
+[node name="left" type="Area2D" parent="walls"]
+metadata/_edit_group_ = true
+
+[node name="leftCollider" type="CollisionShape2D" parent="walls/left"]
+position = Vector2(0, 180)
+shape = SubResource("RectangleShape2D_n41nf")
+
+[node name="ColorRect" type="ColorRect" parent="walls/left"]
+offset_left = -5.0
+offset_right = 5.0
+offset_bottom = 360.0
+color = Color(0.675146, 0.875033, 0.812898, 1)
+
+[node name="right" type="Area2D" parent="walls"]
+script = SubResource("CSharpScript_y36tq")
+metadata/_edit_group_ = true
+
+[node name="rightCollider" type="CollisionShape2D" parent="walls/right"]
+position = Vector2(180, 180)
+shape = SubResource("RectangleShape2D_n41nf")
+
+[node name="ColorRect" type="ColorRect" parent="walls/right"]
+offset_left = 175.0
+offset_right = 185.0
+offset_bottom = 360.0
+color = Color(0.67451, 0.87451, 0.811765, 1)
+
+[node name="bottom" type="Area2D" parent="walls"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/bottom"]
+position = Vector2(90, 360)
+shape = SubResource("RectangleShape2D_fee2n")
+
+[node name="ColorRect" type="ColorRect" parent="walls/bottom"]
+offset_top = 355.0
+offset_right = 180.0
+offset_bottom = 365.0
+color = Color(0.67451, 0.87451, 0.811765, 1)
+
+[node name="deathArea" type="Area2D" parent="walls"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/deathArea"]
+position = Vector2(90, 600)
+shape = SubResource("RectangleShape2D_fee2n")
+
+[node name="player" parent="." instance=ExtResource("2_ssnt5")]
+position = Vector2(48, 47)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -11.0
+offset_right = 729.0
+offset_bottom = 1289.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("3_tnlhb")
+IsLoading = false
