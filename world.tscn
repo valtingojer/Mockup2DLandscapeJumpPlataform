@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://bit04m7u6da4j"]
+[gd_scene load_steps=6 format=3 uid="uid://bit04m7u6da4j"]
 
-[ext_resource type="PackedScene" uid="uid://q88u8x4ixq6q" path="res://prefabs/platform.tscn" id="1_68lhs"]
 [ext_resource type="PackedScene" uid="uid://cnf2emc0tnngt" path="res://prefabs/player.tscn" id="2_ssnt5"]
 [ext_resource type="Script" path="res://scripts/Loading.cs" id="3_tnlhb"]
 
@@ -75,21 +74,6 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls/deathArea"]
 position = Vector2(90, 600)
 shape = SubResource("RectangleShape2D_fee2n")
-
-[node name="plataform" parent="." instance=ExtResource("1_68lhs")]
-position = Vector2(0, 315)
-AnimationDirection = 2
-
-[node name="plataform3" parent="." node_paths=PackedStringArray("animationPlayer") instance=ExtResource("1_68lhs")]
-position = Vector2(0, 256)
-AnimationSpeedPercent = 150.0
-AnimationDirection = 2
-animationPlayer = NodePath("../plataform/AnimatableBody2D/AnimationPlayer")
-
-[node name="Platform" parent="." instance=ExtResource("1_68lhs")]
-position = Vector2(0, 206)
-AnimationSpeedPercent = 50.0
-AnimationDirection = 2
 
 [node name="player" parent="." instance=ExtResource("2_ssnt5")]
 position = Vector2(48, 47)
